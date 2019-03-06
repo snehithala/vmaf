@@ -27,6 +27,8 @@
 #include <iomanip>
 #include "libvmaf.h"
 
+#define PRINT_PROGRESS (1)
+
 #include "vmaf.h"
 #include "combo.h"
 #include "pugixml/pugixml.hpp"
@@ -554,6 +556,7 @@ Result VmafQualityRunner::run(Asset asset, int (*read_frame)(float *ref_data, fl
                        bool do_psnr, bool do_ssim, bool do_ms_ssim, int n_thread, int n_subsample)
 {
 
+    dbg_printf("Loading model from model_path...\n");
     std::unique_ptr<LibsvmNusvrTrainTestModel> model_ptr = _load_model(model_path);
     LibsvmNusvrTrainTestModel& model = *model_ptr;
 
@@ -975,6 +978,7 @@ double RunVmaf(const char* fmt, int width, int height,
     }
 
     Asset asset(width, height, fmt);
+    dbg_printf("Creating VmafQualityRunner...\n");
     std::unique_ptr<IVmafQualityRunner> runner_ptr = VmafQualityRunnerFactory::createVmafQualityRunner(model_path, enable_conf_interval);
 
     Timer timer;
