@@ -679,6 +679,7 @@ Result VmafQualityRunner::run(Asset asset, int (*read_frame)(float *ref_data, fl
     }
     dbg_printf(
             "Generate final features (including derived atom features)...\n");
+    dbg_printf("Number of frames is: %f, ", num_frms);
     double ADM2_CONSTANT = 0.0;
     double ADM_SCALE_CONSTANT = 0.0;
     StatVector adm2, motion, vif_scale0, vif_scale1, vif_scale2, vif_scale3,
